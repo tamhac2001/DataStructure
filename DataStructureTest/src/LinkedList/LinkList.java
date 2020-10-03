@@ -25,16 +25,49 @@ public class LinkList {
 	}
 
 	public void displayList() {
-		Link curentLink = first;
+		Link currentLink = first;
 		if (isEmpty())
 			System.out.println("The list is empty!");
 		else {
-			while (curentLink != null) {
-				curentLink.displayLink();
-				curentLink = curentLink.next;
+			while (currentLink != null) {
+				currentLink.displayLink();
+				currentLink = currentLink.next;
 			}
 			System.out.println();
 		}
+	}
 
+	public void find(int data) {
+		Link currentLink = first;
+		while (currentLink != null) {
+			if (currentLink.data == data) {
+				System.out.println("Found " + data + " in list!");
+				break;
+			} else
+				currentLink = currentLink.next;
+		}
+		if (currentLink == null)
+			System.out.println("No " + data + " in list!");
+	}
+
+	public void delelete(int data) {
+		if (isEmpty())
+			System.out.println("The list is empty!");
+		else {
+			Link currentLink = first;
+			Link previousLink = currentLink;
+			while (currentLink != null) {
+				if(currentLink==first && currentLink.data==data) deleteFirst();
+				else if (currentLink.data == data) {
+					previousLink.next = currentLink.next;
+					break;
+				} else {
+					previousLink = currentLink;
+					currentLink = currentLink.next;
+				}
+			}
+			if (currentLink == null)
+				System.out.println("No " + data + " in list!");
+		}
 	}
 }
